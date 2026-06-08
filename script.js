@@ -55,6 +55,9 @@ activateTab("layer");
 window.addEventListener("scroll", setHeader, { passive: true });
 
 if (heroVideos.length) {
+  const localHostnames = new Set(["localhost", "127.0.0.1", "::1"]);
+  const shouldUseLocalVideo = localHostnames.has(window.location.hostname);
+
   const playHeroVideo = (video) => {
     const playAttempt = video.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
@@ -70,6 +73,15 @@ if (heroVideos.length) {
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
+
+    const selectedSrc = shouldUseLocalVideo ? video.dataset.localSrc : video.dataset.publicSrc;
+    const selectedPoster = shouldUseLocalVideo ? video.dataset.localPoster : video.dataset.publicPoster;
+
+    if (selectedPoster) video.poster = selectedPoster;
+    if (selectedSrc && video.currentSrc !== selectedSrc && video.getAttribute("src") !== selectedSrc) {
+      video.src = selectedSrc;
+      video.load();
+    }
 
     const requestPlay = () => playHeroVideo(video);
 
