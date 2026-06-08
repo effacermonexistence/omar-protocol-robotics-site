@@ -111,12 +111,9 @@ if (filmSections.length) {
     const viewport = window.innerHeight || 1;
     let activeSection = filmSections[0];
 
-    filmSections.forEach((section, index) => {
+    filmSections.forEach((section) => {
       const rect = section.getBoundingClientRect();
-      const previousSection = filmSections[index - 1];
-      const isAfterHero = previousSection?.classList.contains("film-hero");
-      const activationLine = isAfterHero ? viewport * -0.52 : viewport * 0.42;
-      if (rect.top <= activationLine) activeSection = section;
+      if (rect.top <= viewport * 0.42) activeSection = section;
     });
 
     filmSections.forEach((section) => {
@@ -156,21 +153,22 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeDetails();
 });
 
-if (!prefersReduced && motionImages.length) {
+if (!prefersReduced && (motionImages.length || heroVideos.length)) {
   let ticking = false;
 
   const setFrameMotion = () => {
     ticking = false;
 
-    motionImages.forEach((image) => {
-      const section = image.closest(".film-section");
+    document.querySelectorAll("[data-motion-image], [data-hero-video]").forEach((media) => {
+      const section = media.closest(".film-section");
       if (!section) return;
 
       const rect = section.getBoundingClientRect();
       const viewport = window.innerHeight || 1;
-      const progress = Math.min(1, Math.max(0, (viewport - rect.top) / (viewport + rect.height)));
-      const shift = (progress - 0.5) * -54;
-      image.style.setProperty("--frame-shift", `${shift.toFixed(2)}px`);
+      const travel = Math.max(1, rect.height - viewport);
+      const progress = Math.min(1, Math.max(0, -rect.top / travel));
+      const y = progress * 100;
+      media.style.setProperty("--frame-position-y", `${y.toFixed(2)}%`);
     });
   };
 

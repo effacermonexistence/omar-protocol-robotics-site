@@ -94,15 +94,9 @@ button { font: inherit; }
   margin-top: -152svh;
 }
 
-.film-hero + .film-section {
-  margin-top: -70svh;
-}
-
 .film-hero {
   min-height: 282svh;
-  --hero-video-scale: 1.22;
-  --hero-video-x: 5.6%;
-  --hero-video-y: -1.2%;
+  --frame-position-x: right;
 }
 .frame-media, .frame-shade {
   position: fixed;
@@ -113,6 +107,7 @@ button { font: inherit; }
 }
 .frame-media {
   z-index: 0;
+  overflow: hidden;
   background: transparent;
   -webkit-mask-image: none;
   mask-image: none;
@@ -145,6 +140,7 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   background:
     radial-gradient(ellipse at 52% 40%, rgba(255, 255, 255, 0.045), transparent 42%),
     linear-gradient(115deg, rgba(255,255,255,0.045), transparent 24% 58%, rgba(255,255,255,0.035) 78%, transparent);
@@ -155,6 +151,7 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
   content: "";
   position: absolute;
   inset: -1px 0;
+  z-index: 3;
   pointer-events: none;
   background:
     linear-gradient(180deg,
@@ -180,22 +177,22 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: var(--frame-position-x, center) var(--frame-position-y, top);
   filter: brightness(1.42) contrast(1.02) saturate(1.06);
-  transform: scale(1.012) translate3d(0, var(--frame-shift, 0px), 0);
+  transform: translate3d(0, 0, 0);
   transform-origin: center center;
-  transition: transform 120ms linear;
+  transition: object-position 120ms linear;
 }
 
 .frame-media video {
   backface-visibility: hidden;
-  transform: scale(1.018) translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   transition: none;
   will-change: transform;
 }
 
 .film-hero .frame-media video {
-  transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .frame-media img[src],
@@ -428,44 +425,9 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   .nav-links { display: none; }
   .film-section { min-height: 244svh; }
   .film-section + .film-section { margin-top: -130svh; }
-  .film-hero + .film-section { margin-top: -72svh; }
   .frame-copy { width: min(760px, calc(100vw - 44px)); padding: 100px 22px 82px; }
   .align-right { justify-self: start; }
   .drawer-panel { width: min(100vw, 760px); }
-}
-
-@media (min-width: 981px) and (max-width: 1500px) and (min-height: 920px) {
-  .film-hero {
-    --hero-video-scale: 1.12;
-    --hero-video-x: 9%;
-    --hero-video-y: -0.8%;
-  }
-  .frame-copy {
-    width: min(700px, calc(100vw - (var(--pad) * 2)));
-  }
-  h1 {
-    max-width: 700px;
-    font-size: clamp(68px, 7vw, 104px);
-  }
-  .section-lead { font-size: clamp(20px, 2vw, 28px); }
-}
-
-@media (min-width: 641px) and (max-width: 1100px) {
-  .site-header { grid-template-columns: 1fr auto; }
-  .nav-links { display: none; }
-  .film-hero {
-    --hero-video-scale: 1.12;
-    --hero-video-x: 8%;
-    --hero-video-y: -0.6%;
-  }
-  .frame-copy {
-    width: min(660px, calc(100vw - 48px));
-  }
-  h1 {
-    max-width: 660px;
-    font-size: clamp(58px, 8vw, 86px);
-  }
-  .section-lead { font-size: clamp(19px, 2.5vw, 26px); }
 }
 
 @media (max-width: 640px) {
@@ -485,16 +447,13 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   }
   .film-hero {
     min-height: 244dvh;
-    --hero-video-scale: 1.24;
-    --hero-video-x: -1%;
-    --hero-video-y: -3.3%;
+    --frame-position-x: center;
   }
   .film-section {
     min-height: 232dvh;
     overflow: visible;
   }
   .film-section + .film-section { margin-top: -118dvh; }
-  .film-hero + .film-section { margin-top: -72dvh; }
   .frame-media,
   .frame-shade {
     inset: 0;
@@ -523,29 +482,49 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   }
   .frame-media img,
   .frame-media video {
-    object-position: center top;
+    object-position: center var(--frame-position-y, top);
     filter: brightness(1.42) contrast(1.02) saturate(1.06);
-    transform: scale(1.012) translate3d(0, var(--frame-shift, 0px), 0);
+    transform: translate3d(0, 0, 0);
   }
   .frame-media video {
-    transform: scale(1.018) translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   .film-hero .frame-media video {
-    transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
+    transform: translate3d(0, 0, 0);
   }
   .frame-06 {
     min-height: 236dvh;
   }
   .frame-copy {
+    position: fixed;
+    inset: 0 auto auto 0;
     width: calc(100vw - 40px);
     min-height: 100dvh;
-    padding: 82px 20px max(166px, calc(env(safe-area-inset-bottom) + 136px));
+    padding: 82px 20px max(62px, calc(env(safe-area-inset-bottom) + 48px));
+    transition: none;
+  }
+  .film-section .frame-copy {
+    transition: none;
+  }
+  body.is-canvas-ready .film-section:not(.is-canvas-active) .frame-copy {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+  }
+  body.is-canvas-ready .film-section.is-canvas-active .frame-copy {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
   }
   .film-section:not(.film-hero) .frame-copy {
+    align-content: start;
+    padding-top: max(126px, calc(env(safe-area-inset-top) + 104px));
     padding-bottom: max(76px, calc(env(safe-area-inset-bottom) + 58px));
   }
   h1 { font-size: clamp(48px, 12.6vw, 58px); line-height: 0.9; }
-  h2 { font-size: clamp(35px, 10.4vw, 48px); line-height: 0.92; }
+  h2 { font-size: clamp(32px, 9.6vw, 42px); line-height: 0.92; }
   h3 { font-size: clamp(31px, 8.5vw, 46px); }
   .eyebrow {
     margin-bottom: 12px;
@@ -585,5 +564,5 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   *, *::before, *::after { animation-duration: 1ms !important; scroll-behavior: auto !important; transition-duration: 1ms !important; }
   .reveal { opacity: 1; transform: none; }
   .frame-media img,
-  .frame-media video { transform: scale(1.03); }
+  .frame-media video { transform: none; }
 }
