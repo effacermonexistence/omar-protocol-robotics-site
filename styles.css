@@ -94,7 +94,12 @@ button { font: inherit; }
   margin-top: -152svh;
 }
 
-.film-hero { min-height: 282svh; }
+.film-hero {
+  min-height: 282svh;
+  --hero-video-scale: 1.22;
+  --hero-video-x: 5.6%;
+  --hero-video-y: -1.2%;
+}
 .frame-media, .frame-shade {
   position: fixed;
   inset: 0;
@@ -186,7 +191,7 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
 }
 
 .film-hero .frame-media video {
-  transform: scale(1.22) translate3d(5.6%, -1.2%, 0);
+  transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
 }
 
 .frame-media img[src],
@@ -424,6 +429,40 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   .drawer-panel { width: min(100vw, 760px); }
 }
 
+@media (min-width: 981px) and (max-width: 1500px) and (min-height: 920px) {
+  .film-hero {
+    --hero-video-scale: 1.12;
+    --hero-video-x: 9%;
+    --hero-video-y: -0.8%;
+  }
+  .frame-copy {
+    width: min(700px, calc(100vw - (var(--pad) * 2)));
+  }
+  h1 {
+    max-width: 700px;
+    font-size: clamp(68px, 7vw, 104px);
+  }
+  .section-lead { font-size: clamp(20px, 2vw, 28px); }
+}
+
+@media (min-width: 641px) and (max-width: 1100px) {
+  .site-header { grid-template-columns: 1fr auto; }
+  .nav-links { display: none; }
+  .film-hero {
+    --hero-video-scale: 1.12;
+    --hero-video-x: 8%;
+    --hero-video-y: -0.6%;
+  }
+  .frame-copy {
+    width: min(660px, calc(100vw - 48px));
+  }
+  h1 {
+    max-width: 660px;
+    font-size: clamp(58px, 8vw, 86px);
+  }
+  .section-lead { font-size: clamp(19px, 2.5vw, 26px); }
+}
+
 @media (max-width: 640px) {
   :root { --pad: 20px; }
   .site-header {
@@ -439,7 +478,12 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     font-size: 11px;
     letter-spacing: 0;
   }
-  .film-hero { min-height: 244dvh; }
+  .film-hero {
+    min-height: 244dvh;
+    --hero-video-scale: 1.24;
+    --hero-video-x: -1%;
+    --hero-video-y: -3.3%;
+  }
   .film-section {
     min-height: 232dvh;
     overflow: visible;
@@ -481,7 +525,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     transform: scale(1.018) translate3d(0, 0, 0);
   }
   .film-hero .frame-media video {
-    transform: scale(1.12) translate3d(0, -1.2%, 0);
+    transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
   }
   .frame-06 {
     min-height: 236dvh;
@@ -489,7 +533,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   .frame-copy {
     width: calc(100vw - 40px);
     min-height: 100dvh;
-    padding: 82px 20px max(62px, calc(env(safe-area-inset-bottom) + 48px));
+    padding: 82px 20px max(166px, calc(env(safe-area-inset-bottom) + 136px));
   }
   .film-section:not(.film-hero) .frame-copy {
     padding-bottom: max(76px, calc(env(safe-area-inset-bottom) + 58px));
