@@ -99,6 +99,8 @@ button { font: inherit; }
   --hero-video-scale: 1.22;
   --hero-video-x: 5.6%;
   --hero-video-y: -1.2%;
+  --hero-scroll-y: 0px;
+  --hero-pan-distance: 72px;
 }
 .frame-media, .frame-shade {
   position: fixed;
@@ -191,7 +193,7 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
 }
 
 .film-hero .frame-media video {
-  transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
+  transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), calc(var(--hero-video-y) + var(--hero-scroll-y)), 0);
 }
 
 .frame-media img[src],
@@ -434,6 +436,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     --hero-video-scale: 1.12;
     --hero-video-x: 9%;
     --hero-video-y: -0.8%;
+    --hero-pan-distance: 58px;
   }
   .frame-copy {
     width: min(700px, calc(100vw - (var(--pad) * 2)));
@@ -452,6 +455,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     --hero-video-scale: 1.12;
     --hero-video-x: 8%;
     --hero-video-y: -0.6%;
+    --hero-pan-distance: 44px;
   }
   .frame-copy {
     width: min(660px, calc(100vw - 48px));
@@ -483,6 +487,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     --hero-video-scale: 1.24;
     --hero-video-x: -1%;
     --hero-video-y: -3.3%;
+    --hero-pan-distance: 78px;
   }
   .film-section {
     min-height: 232dvh;
@@ -525,7 +530,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     transform: scale(1.018) translate3d(0, 0, 0);
   }
   .film-hero .frame-media video {
-    transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), var(--hero-video-y), 0);
+    transform: scale(var(--hero-video-scale)) translate3d(var(--hero-video-x), calc(var(--hero-video-y) + var(--hero-scroll-y)), 0);
   }
   .frame-06 {
     min-height: 236dvh;
