@@ -75,6 +75,7 @@ button { font: inherit; }
 .nav-links a:hover::after, .nav-cta:hover::after, .close-button:hover::after { transform: scaleX(1); }
 .landing-film {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   background:
     linear-gradient(180deg, #000 0%, #010101 18%, #000 42%, #010101 70%, #000 100%);
@@ -102,10 +103,11 @@ button { font: inherit; }
   will-change: opacity;
 }
 .frame-media {
-  z-index: -3;
+  z-index: 0;
   background: transparent;
   -webkit-mask-image: none;
   mask-image: none;
+  pointer-events: none;
 }
 
 .film-hero .frame-media,
@@ -224,7 +226,8 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
 }
 
 .frame-shade {
-  z-index: -2;
+  z-index: 1;
+  pointer-events: none;
   -webkit-mask-image: none;
   mask-image: none;
   background:
@@ -241,7 +244,7 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
 .frame-copy {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   align-content: end;
   width: min(880px, calc(100vw - (var(--pad) * 2)));
@@ -436,12 +439,12 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     font-size: 11px;
     letter-spacing: 0;
   }
-  .film-hero { min-height: 184dvh; }
+  .film-hero { min-height: 244dvh; }
   .film-section {
-    min-height: 176dvh;
+    min-height: 232dvh;
     overflow: visible;
   }
-  .film-section + .film-section { margin-top: -56dvh; }
+  .film-section + .film-section { margin-top: -118dvh; }
   .frame-media,
   .frame-shade {
     inset: 0;
@@ -470,24 +473,18 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   }
   .frame-media img,
   .frame-media video {
-    object-position: var(--mobile-focus, center center);
-    filter: brightness(1.12) contrast(1.04) saturate(1.04);
-    transform: scale(1.008) translate3d(0, var(--frame-shift, 0px), 0);
+    object-position: center top;
+    filter: brightness(1.42) contrast(1.02) saturate(1.06);
+    transform: scale(1.012) translate3d(0, var(--frame-shift, 0px), 0);
   }
   .frame-media video {
     transform: scale(1.018) translate3d(0, 0, 0);
   }
   .film-hero .frame-media video {
-    transform: scale(1.16) translate3d(0, -1.8%, 0);
+    transform: scale(1.12) translate3d(0, -1.2%, 0);
   }
-  .frame-01 { --mobile-focus: 64% center; }
-  .frame-02 { --mobile-focus: 54% center; }
-  .frame-03 { --mobile-focus: 46% center; }
-  .frame-04 { --mobile-focus: 50% center; }
-  .frame-05 { --mobile-focus: 52% center; }
   .frame-06 {
-    --mobile-focus: 45% center;
-    min-height: 190dvh;
+    min-height: 236dvh;
   }
   .frame-copy {
     width: calc(100vw - 40px);

@@ -8,6 +8,7 @@ const tabPanels = document.querySelectorAll("[data-tab-panel]");
 const revealItems = document.querySelectorAll(".reveal");
 const filmSections = document.querySelectorAll(".film-section");
 const motionImages = document.querySelectorAll("[data-motion-image]");
+const heroVideos = document.querySelectorAll("[data-hero-video]");
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const tabTitles = {
@@ -52,6 +53,42 @@ setHeader();
 activateTab("layer");
 
 window.addEventListener("scroll", setHeader, { passive: true });
+
+if (heroVideos.length) {
+  const playHeroVideo = (video) => {
+    const playAttempt = video.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(() => {});
+    }
+  };
+
+  heroVideos.forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    const requestPlay = () => playHeroVideo(video);
+
+    if (video.readyState >= 2) requestPlay();
+    video.addEventListener("loadedmetadata", requestPlay, { once: true });
+    video.addEventListener("canplay", requestPlay, { once: true });
+    video.addEventListener("playing", () => video.classList.add("is-playing"));
+    window.addEventListener("pageshow", requestPlay);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) requestPlay();
+    });
+
+    ["pointerdown", "touchstart", "click"].forEach((eventName) => {
+      window.addEventListener(eventName, requestPlay, { once: true, passive: true });
+    });
+
+    requestPlay();
+  });
+}
 
 if (filmSections.length) {
   let canvasTicking = false;
