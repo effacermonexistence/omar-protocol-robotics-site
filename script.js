@@ -7,7 +7,6 @@ const tabButtons = document.querySelectorAll("[data-tab-target]");
 const tabPanels = document.querySelectorAll("[data-tab-panel]");
 const revealItems = document.querySelectorAll(".reveal");
 const filmSections = document.querySelectorAll(".film-section");
-const heroSection = document.querySelector(".film-hero");
 const motionImages = document.querySelectorAll("[data-motion-image]");
 const heroVideos = document.querySelectorAll("[data-hero-video]");
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -112,9 +111,12 @@ if (filmSections.length) {
     const viewport = window.innerHeight || 1;
     let activeSection = filmSections[0];
 
-    filmSections.forEach((section) => {
+    filmSections.forEach((section, index) => {
       const rect = section.getBoundingClientRect();
-      if (rect.top <= viewport * 0.42) activeSection = section;
+      const previousSection = filmSections[index - 1];
+      const isAfterHero = previousSection?.classList.contains("film-hero");
+      const activationLine = isAfterHero ? viewport * -0.52 : viewport * 0.42;
+      if (rect.top <= activationLine) activeSection = section;
     });
 
     filmSections.forEach((section) => {
@@ -181,31 +183,6 @@ if (!prefersReduced && motionImages.length) {
   setFrameMotion();
   window.addEventListener("scroll", requestMotion, { passive: true });
   window.addEventListener("resize", requestMotion);
-}
-
-if (!prefersReduced && heroSection) {
-  let heroPanTicking = false;
-
-  const setHeroPan = () => {
-    heroPanTicking = false;
-
-    const rect = heroSection.getBoundingClientRect();
-    const viewport = window.innerHeight || 1;
-    const scrollable = Math.max(1, rect.height - viewport);
-    const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
-    const distance = parseFloat(getComputedStyle(heroSection).getPropertyValue("--hero-pan-distance")) || 0;
-    heroSection.style.setProperty("--hero-scroll-y", `${(progress * distance).toFixed(2)}px`);
-  };
-
-  const requestHeroPan = () => {
-    if (heroPanTicking) return;
-    heroPanTicking = true;
-    requestAnimationFrame(setHeroPan);
-  };
-
-  setHeroPan();
-  window.addEventListener("scroll", requestHeroPan, { passive: true });
-  window.addEventListener("resize", requestHeroPan);
 }
 
 if ("IntersectionObserver" in window) {
