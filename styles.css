@@ -191,22 +191,22 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
   will-change: transform;
 }
 
-.frame-06 .frame-media .video-fallback,
-.frame-06 .frame-media video {
+.frame-media .video-fallback,
+.frame-media .video-fallback + video {
   position: absolute;
   inset: 0;
 }
 
-.frame-06 .frame-media .video-fallback {
+.frame-media .video-fallback {
   z-index: 0;
 }
 
-.frame-06 .frame-media video {
+.frame-media .video-fallback + video {
   z-index: 1;
   opacity: 0;
 }
 
-.frame-06 .frame-media video.is-playing {
+.frame-media .video-fallback + video.is-playing {
   opacity: 1;
 }
 
