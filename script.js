@@ -10,6 +10,8 @@ const filmSections = document.querySelectorAll(".film-section");
 const motionImages = document.querySelectorAll("[data-motion-image]");
 const heroVideos = document.querySelectorAll("[data-hero-video]");
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let requestAllHeroVideoPlayback = () => {};
+let requestActiveHeroVideoPlayback = () => {};
 
 const tabTitles = {
   layer: "Robotics reliability",
@@ -57,6 +59,7 @@ window.addEventListener("scroll", setHeader, { passive: true });
 if (heroVideos.length) {
   const localHostnames = new Set(["localhost", "127.0.0.1", "::1"]);
   const shouldUseLocalVideo = localHostnames.has(window.location.hostname);
+  const videoList = Array.from(heroVideos);
 
   const playHeroVideo = (video) => {
     const playAttempt = video.play();
@@ -65,7 +68,22 @@ if (heroVideos.length) {
     }
   };
 
-  heroVideos.forEach((video) => {
+  const isActiveVideo = (video) => {
+    const section = video.closest(".film-section");
+    return !section || section.classList.contains("film-hero") || section.classList.contains("is-canvas-active");
+  };
+
+  requestAllHeroVideoPlayback = () => {
+    videoList.forEach(playHeroVideo);
+  };
+
+  requestActiveHeroVideoPlayback = () => {
+    const activeSection = document.querySelector(".film-section.is-canvas-active") || document.querySelector(".film-hero");
+    const activeVideos = activeSection ? activeSection.querySelectorAll("[data-hero-video]") : videoList;
+    activeVideos.forEach(playHeroVideo);
+  };
+
+  videoList.forEach((video) => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
@@ -89,13 +107,16 @@ if (heroVideos.length) {
     video.addEventListener("loadedmetadata", requestPlay, { once: true });
     video.addEventListener("canplay", requestPlay, { once: true });
     video.addEventListener("playing", () => video.classList.add("is-playing"));
-    window.addEventListener("pageshow", requestPlay);
+    video.addEventListener("pause", () => {
+      if (!document.hidden && isActiveVideo(video)) window.setTimeout(requestPlay, 120);
+    });
+    window.addEventListener("pageshow", requestAllHeroVideoPlayback);
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) requestPlay();
+      if (!document.hidden) requestAllHeroVideoPlayback();
     });
 
     ["pointerdown", "touchstart", "click"].forEach((eventName) => {
-      window.addEventListener(eventName, requestPlay, { once: true, passive: true });
+      window.addEventListener(eventName, requestAllHeroVideoPlayback, { passive: true });
     });
 
     requestPlay();
@@ -121,6 +142,7 @@ if (filmSections.length) {
     });
 
     document.body.classList.add("is-canvas-ready");
+    requestActiveHeroVideoPlayback();
   };
 
   const requestCanvasSections = () => {
