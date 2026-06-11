@@ -102,11 +102,13 @@ if (heroVideos.length) {
     video.setAttribute("webkit-playsinline", "");
 
     const selectedSrc = shouldUseLocalVideo ? video.dataset.localSrc : video.dataset.publicSrc;
+    const selectedMobileSrc = mobilePlaybackQuery.matches ? video.dataset.mobileSrc : "";
     const selectedPoster = shouldUseLocalVideo ? video.dataset.localPoster : video.dataset.publicPoster;
+    const finalSelectedSrc = selectedMobileSrc || selectedSrc;
 
     if (selectedPoster) video.poster = selectedPoster;
-    if (selectedSrc && video.currentSrc !== selectedSrc && video.getAttribute("src") !== selectedSrc) {
-      video.src = selectedSrc;
+    if (finalSelectedSrc && video.currentSrc !== finalSelectedSrc && video.getAttribute("src") !== finalSelectedSrc) {
+      video.src = finalSelectedSrc;
       video.load();
     }
 
