@@ -60,11 +60,8 @@ if (heroVideos.length) {
   const localHostnames = new Set(["localhost", "127.0.0.1", "::1"]);
   const shouldUseLocalVideo = localHostnames.has(window.location.hostname);
   const videoList = Array.from(heroVideos);
-  const mobileVideoQuery = window.matchMedia("(max-width: 760px), (pointer: coarse)");
-  const isMobileVideoMode = () => mobileVideoQuery.matches;
 
   const playHeroVideo = (video) => {
-    if (video.readyState === 0) video.load();
     const playAttempt = video.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
       playAttempt.catch(() => {});
@@ -73,37 +70,18 @@ if (heroVideos.length) {
 
   const isActiveVideo = (video) => {
     const section = video.closest(".film-section");
-    const activeSection = document.querySelector(".film-section.is-canvas-active") || document.querySelector(".film-hero");
-    return !section || section === activeSection;
-  };
-
-  const getActiveVideos = () => {
-    const activeSection = document.querySelector(".film-section.is-canvas-active") || document.querySelector(".film-hero");
-    return activeSection ? Array.from(activeSection.querySelectorAll("[data-hero-video]")) : videoList;
-  };
-
-  const syncMobileHeroVideoPlayback = () => {
-    const activeVideos = getActiveVideos();
-    const activeVideoSet = new Set(activeVideos);
-
-    videoList.forEach((video) => {
-      if (isMobileVideoMode() && !activeVideoSet.has(video)) {
-        video.pause();
-        return;
-      }
-
-      if (!isMobileVideoMode() || activeVideoSet.has(video)) {
-        playHeroVideo(video);
-      }
-    });
+    return !section || section.classList.contains("film-hero") || section.classList.contains("is-canvas-active");
   };
 
   requestAllHeroVideoPlayback = () => {
-    if (isMobileVideoMode()) syncMobileHeroVideoPlayback();
-    else videoList.forEach(playHeroVideo);
+    videoList.forEach(playHeroVideo);
   };
 
-  requestActiveHeroVideoPlayback = syncMobileHeroVideoPlayback;
+  requestActiveHeroVideoPlayback = () => {
+    const activeSection = document.querySelector(".film-section.is-canvas-active") || document.querySelector(".film-hero");
+    const activeVideos = activeSection ? activeSection.querySelectorAll("[data-hero-video]") : videoList;
+    activeVideos.forEach(playHeroVideo);
+  };
 
   videoList.forEach((video) => {
     video.muted = true;
@@ -123,10 +101,7 @@ if (heroVideos.length) {
       video.load();
     }
 
-    const requestPlay = () => {
-      if (isMobileVideoMode() && !isActiveVideo(video)) return;
-      playHeroVideo(video);
-    };
+    const requestPlay = () => playHeroVideo(video);
 
     if (video.readyState >= 2) requestPlay();
     video.addEventListener("loadedmetadata", requestPlay, { once: true });
@@ -135,21 +110,17 @@ if (heroVideos.length) {
     video.addEventListener("pause", () => {
       if (!document.hidden && isActiveVideo(video)) window.setTimeout(requestPlay, 120);
     });
+    window.addEventListener("pageshow", requestAllHeroVideoPlayback);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) requestAllHeroVideoPlayback();
+    });
+
+    ["pointerdown", "touchstart", "click"].forEach((eventName) => {
+      window.addEventListener(eventName, requestAllHeroVideoPlayback, { passive: true });
+    });
+
     requestPlay();
   });
-
-  window.addEventListener("pageshow", requestAllHeroVideoPlayback);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) requestAllHeroVideoPlayback();
-  });
-
-  ["pointerdown", "touchstart", "touchend", "click"].forEach((eventName) => {
-    window.addEventListener(eventName, requestAllHeroVideoPlayback, { passive: true });
-  });
-
-  if (typeof mobileVideoQuery.addEventListener === "function") {
-    mobileVideoQuery.addEventListener("change", requestAllHeroVideoPlayback);
-  }
 }
 
 if (filmSections.length) {
