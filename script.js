@@ -60,8 +60,10 @@ if (heroVideos.length) {
   const localHostnames = new Set(["localhost", "127.0.0.1", "::1"]);
   const shouldUseLocalVideo = localHostnames.has(window.location.hostname);
   const videoList = Array.from(heroVideos);
+  const mobilePlaybackQuery = window.matchMedia("(max-width: 760px), (pointer: coarse)");
 
   const playHeroVideo = (video) => {
+    if (video.readyState === 0) video.load();
     const playAttempt = video.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
       playAttempt.catch(() => {});
@@ -81,6 +83,13 @@ if (heroVideos.length) {
     const activeSection = document.querySelector(".film-section.is-canvas-active") || document.querySelector(".film-hero");
     const activeVideos = activeSection ? activeSection.querySelectorAll("[data-hero-video]") : videoList;
     activeVideos.forEach(playHeroVideo);
+  };
+
+  const repairMobileHeroVideoPlayback = () => {
+    requestActiveHeroVideoPlayback();
+    if (!mobilePlaybackQuery.matches) return;
+    window.setTimeout(requestActiveHeroVideoPlayback, 160);
+    window.setTimeout(requestActiveHeroVideoPlayback, 520);
   };
 
   videoList.forEach((video) => {
@@ -105,7 +114,9 @@ if (heroVideos.length) {
 
     if (video.readyState >= 2) requestPlay();
     video.addEventListener("loadedmetadata", requestPlay, { once: true });
+    video.addEventListener("loadeddata", requestPlay, { once: true });
     video.addEventListener("canplay", requestPlay, { once: true });
+    video.addEventListener("canplaythrough", requestPlay, { once: true });
     video.addEventListener("playing", () => video.classList.add("is-playing"));
     video.addEventListener("pause", () => {
       if (!document.hidden && isActiveVideo(video)) window.setTimeout(requestPlay, 120);
@@ -121,6 +132,14 @@ if (heroVideos.length) {
 
     requestPlay();
   });
+
+  ["scroll", "resize", "orientationchange", "touchmove", "touchend", "pointerup"].forEach((eventName) => {
+    window.addEventListener(eventName, repairMobileHeroVideoPlayback, { passive: true });
+  });
+
+  window.setInterval(() => {
+    if (!document.hidden && mobilePlaybackQuery.matches) requestActiveHeroVideoPlayback();
+  }, 1400);
 }
 
 if (filmSections.length) {
