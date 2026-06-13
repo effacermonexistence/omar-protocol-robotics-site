@@ -4,6 +4,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
+    "start": "node server.js",
     "test": "./scripts/run-lock-tests.sh",
     "test:contract": "./scripts/run-lock-tests.sh contract",
     "test:visual": "./scripts/run-lock-tests.sh visual"

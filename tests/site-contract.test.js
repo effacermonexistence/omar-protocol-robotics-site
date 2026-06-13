@@ -7,9 +7,12 @@ const test = require("node:test");
 
 const ROOT = path.join(__dirname, "..");
 const manifest = readJson("tests/lock-manifest.json");
+const packageJson = readJson("package.json");
 const html = readText("index.html");
 const css = readText("styles.css");
 const js = readText("script.js");
+const server = readText("server.js");
+const railwayServer = readText("server.mjs");
 
 function readText(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), "utf8");
@@ -128,6 +131,16 @@ test("Benchmarks scrolls to the landing graph board and every Play routes to Oma
   const playLinks = [...html.matchAll(/<a class="benchmark-play" href="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(playLinks.length, 20, "expected one BYOK Play link for each benchmark row");
   assert.deepEqual(new Set(playLinks), new Set(["https://omaragi.com/run"]));
+});
+
+test("Railway static server entrypoint preserves Range-capable asset delivery", () => {
+  assert.equal(packageJson.scripts.start, "node server.js", "Railway must have a stable start command");
+  assertIncludes(railwayServer, 'import "./server.js";', "server.mjs");
+  assertIncludes(server, "http.createServer", "server.js");
+  assertIncludes(server, "Accept-Ranges", "server.js");
+  assertIncludes(server, "Content-Range", "server.js");
+  assertIncludes(server, "process.env.PORT", "server.js");
+  assertIncludes(server, "index.html", "server.js");
 });
 
 test("Validate before motion frame uses the non-human mechanical mask asset", () => {
