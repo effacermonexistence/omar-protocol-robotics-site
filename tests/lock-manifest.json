@@ -7,8 +7,8 @@
     "mobile": { "width": 430, "height": 932, "deviceScaleFactor": 3, "isMobile": true, "hasTouch": true }
   },
   "lockedFiles": {
-    "index.html": "d70c2933af6be9a27d522470adac4b80917b1b3da1b5c0693988734f5834537c",
-    "styles.css": "26728cff300e1035e9f41ee48a5cf68cdec2cbfabd159c660efbcefb6a52b79e",
+    "index.html": "ef56899627c6d75f2d10f7eae427a43b7bd84c08980fd4bb41a14eb0459b9a61",
+    "styles.css": "a72dc48f551a0f29087fb5cf43b27795e1b87d99ee4c28a2bec4bff935513d3f",
     "script.js": "36041c44d42e39b93397dab69edd4d27d54b9733fcc362c1ddd6f097c9da2083"
   },
   "lockedHeroAssets": {
@@ -18,7 +18,7 @@
     "assets/runway/omar-protocol-satellite-repair-v2-10s-mobile-safari.mp4": "f1810dee8c2de5270625f45c96b2ab19ad9bb886b99c1ad15bf1e9c37277b6b3",
     "assets/runway/omar-protocol-frame06-runway-v8-gen45-firstframe.jpg": "e2fd37bbf1cdf58582b85d0852300ac698ed73af28c3f87a4201474e719b6367",
     "assets/runway/omar-protocol-frame06-runway-v8-gen45-10s-mobile-safari.mp4": "d3d9e4c7a24f7af122f7ee6e09be31dc6899f0b6842d0b8835901bb0970456ec",
-    "assets/generated/omar-protocol-validate-motion-actuator-gate-v16-941x1672.png": "985a88bb93868bd009829b574b12c0a653a0ff5f46131117f693d114d7db61f4"
+    "assets/generated/omar-protocol-validate-repair-family-humanoid-v17-941x1672.png": "20012b9fe9dcab57770c3d3fcfa272606368042de865174d3d9dd49af2f10e78"
   },
   "lockedCopy": [
     "Omar Protocol",

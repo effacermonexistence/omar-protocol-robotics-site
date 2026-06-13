@@ -217,6 +217,11 @@ body.is-canvas-ready .film-section.is-canvas-active .frame-shade { opacity: 1; }
 .frame-media img[src],
 .frame-media video[src] { color: transparent; }
 
+.frame-04 .frame-media img {
+  width: 112%;
+  max-width: none;
+}
+
 .film-section::before,
 .film-section::after {
   content: "";
@@ -816,6 +821,10 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     object-position: center var(--frame-position-y, top);
     filter: brightness(1.42) contrast(1.02) saturate(1.06);
     transform: translate3d(0, 0, 0);
+  }
+  .frame-04 .frame-media img {
+    width: 100%;
+    max-width: 100%;
   }
   .frame-media video {
     transform: translate3d(0, 0, 0);

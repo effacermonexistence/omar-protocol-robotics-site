@@ -149,9 +149,10 @@ test("Railway static server entrypoint preserves Range-capable asset delivery", 
   assertIncludes(server, "index.html", "server.js");
 });
 
-test("Validate before motion frame uses the new non-humanoid actuator gate asset", () => {
-  const acceptedAsset = "./assets/generated/omar-protocol-validate-motion-actuator-gate-v16-941x1672.png";
+test("Validate before motion frame uses the frame-06 repair-family humanoid asset", () => {
+  const acceptedAsset = "./assets/generated/omar-protocol-validate-repair-family-humanoid-v17-941x1672.png";
   const rejectedAssets = [
+    "./assets/generated/omar-protocol-validate-motion-actuator-gate-v16-941x1672.png",
     "./assets/generated/omar-protocol-validate-companion-open-rig-no-brow-v14-720x1280.png",
     "./assets/generated/omar-protocol-validate-companion-pelvis-no-brow-v13-720x1280.png",
     "./assets/generated/omar-protocol-validate-before-motion-face-v3-720x1280.png",
