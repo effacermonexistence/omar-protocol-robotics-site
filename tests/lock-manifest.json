@@ -7,8 +7,8 @@
     "mobile": { "width": 430, "height": 932, "deviceScaleFactor": 3, "isMobile": true, "hasTouch": true }
   },
   "lockedFiles": {
-    "index.html": "6a4a552c8359300d5ae48d4c9db31d920cef4899c4d8867d5b39f190748fa425",
-    "styles.css": "a4a7360fe30d5da4f3e5b32cc8ac6503a80306f21a2656cad0893ad7cd38ddb2",
+    "index.html": "dc16467b5370c8eab9e5406dd8902c2b887e2129909fb20ff1f32f186f871cec",
+    "styles.css": "26728cff300e1035e9f41ee48a5cf68cdec2cbfabd159c660efbcefb6a52b79e",
     "script.js": "36041c44d42e39b93397dab69edd4d27d54b9733fcc362c1ddd6f097c9da2083"
   },
   "lockedHeroAssets": {

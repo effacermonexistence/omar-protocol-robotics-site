@@ -104,6 +104,8 @@ async function visibleTextOverflow(page) {
       ".process strong",
       ".benchmark-title strong",
       ".benchmark-metric strong",
+      ".benchmark-scoregraph b",
+      ".benchmark-scale i",
       ".benchmark-play"
     ].join(","))];
     return nodes
@@ -225,15 +227,22 @@ async function assertBenchmarkBoard(page, url, labelName) {
       sectionTop: rect.top,
       sectionBottom: rect.bottom,
       styledRows: rows.filter((row) => row.style.getPropertyValue("--baseline") && row.style.getPropertyValue("--omar")).length,
-      graphTracks: rows.filter((row) => {
-        const metric = row.querySelector(".benchmark-metric");
-        return metric && getComputedStyle(metric, "::after").backgroundImage !== "none";
+      scoreGraphs: rows.filter((row) => row.querySelector(".benchmark-scoregraph")).length,
+      baselineTracks: rows.filter((row) => row.querySelector(".benchmark-scoregraph .benchmark-track-baseline i")).length,
+      omarTracks: rows.filter((row) => row.querySelector(".benchmark-scoregraph .benchmark-track-omar i")).length,
+      readableGraphs: rows.filter((row) => {
+        const graph = row.querySelector(".benchmark-scoregraph");
+        const rect = graph?.getBoundingClientRect();
+        return rect && rect.width >= Math.min(260, window.innerWidth - 72);
       }).length
     };
   });
   assert.ok(boardMetrics.sectionTop < boardMetrics.innerHeight, `${labelName} benchmark board was not reached`);
   assert.equal(boardMetrics.styledRows, 20, `${labelName} benchmark graph variables drifted`);
-  assert.equal(boardMetrics.graphTracks, 20, `${labelName} benchmark graph tracks drifted`);
+  assert.equal(boardMetrics.scoreGraphs, 20, `${labelName} benchmark score graph count drifted`);
+  assert.equal(boardMetrics.baselineTracks, 20, `${labelName} benchmark baseline graph tracks drifted`);
+  assert.equal(boardMetrics.omarTracks, 20, `${labelName} benchmark Omar/RCC graph tracks drifted`);
+  assert.equal(boardMetrics.readableGraphs, 20, `${labelName} benchmark score graphs became too narrow`);
   assert.ok(boardMetrics.scrollWidth <= boardMetrics.innerWidth + 1, `${labelName} benchmark board caused page overflow: ${boardMetrics.scrollWidth} > ${boardMetrics.innerWidth}`);
 
   const overflow = await visibleTextOverflow(page);

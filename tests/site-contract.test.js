@@ -102,6 +102,7 @@ test("Benchmarks scrolls to the landing graph board and every Play routes to Oma
   assert.equal(html.includes('<a href="#details" data-detail-target="benchmarks">Benchmarks</a>'), false, "top-level Benchmarks must scroll to the landing graph board");
   assertIncludes(html, '<section class="benchmark-field" id="benchmarks"', "landing benchmark section");
   assertIncludes(html, '<div class="benchmark-board" data-benchmark-board', "benchmark board");
+  assertIncludes(html, '<div><span>Score graph</span><strong>Baseline to Omar/RCC</strong></div>', "benchmark graph heading");
   assertIncludes(html, '<a class="button benchmark-board-action" href="https://omaragi.com/run">Open BYOK Replay</a>', "benchmark drawer link");
 
   const benchmarkRows = [...html.matchAll(/<li class="benchmark-row" data-benchmark-name="([^"]+)" style="--baseline: [^"]+; --omar: [^"]+;">/g)].map((match) => match[1]);
@@ -131,6 +132,11 @@ test("Benchmarks scrolls to the landing graph board and every Play routes to Oma
   const playLinks = [...html.matchAll(/<a class="benchmark-play" href="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(playLinks.length, 20, "expected one BYOK Play link for each benchmark row");
   assert.deepEqual(new Set(playLinks), new Set(["https://omaragi.com/run"]));
+
+  assert.equal((html.match(/class="benchmark-scoregraph"/g) || []).length, 20, "expected one score graph for each benchmark row");
+  assert.equal((html.match(/class="benchmark-scale"/g) || []).length, 20, "expected one score scale for each benchmark row");
+  assert.equal((html.match(/class="benchmark-track benchmark-track-baseline"/g) || []).length, 20, "expected one baseline graph track for each benchmark row");
+  assert.equal((html.match(/class="benchmark-track benchmark-track-omar"/g) || []).length, 20, "expected one Omar/RCC graph track for each benchmark row");
 });
 
 test("Railway static server entrypoint preserves Range-capable asset delivery", () => {

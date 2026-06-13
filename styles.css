@@ -471,7 +471,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
 
 .benchmark-board-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr) auto;
   align-items: stretch;
   border-bottom: 1px solid var(--line);
 }
@@ -519,12 +519,12 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
 .benchmark-row {
   counter-increment: benchmark-row;
   display: grid;
-  grid-template-columns: minmax(240px, 1.34fr) minmax(196px, 0.70fr) 92px;
-  gap: 22px;
+  grid-template-columns: minmax(210px, 0.72fr) minmax(390px, 1.28fr) 74px;
+  gap: 18px;
   align-items: center;
-  min-height: 128px;
+  min-height: 116px;
   border-bottom: 1px solid var(--line);
-  padding: 24px 22px;
+  padding: 18px 22px;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0));
   transition: background 220ms var(--ease), border-color 220ms var(--ease);
 }
@@ -535,6 +535,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
 .benchmark-title {
   min-width: 0;
   display: grid;
+  align-content: center;
 }
 
 .benchmark-title::before {
@@ -550,7 +551,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   display: block;
   margin-top: 8px;
   color: var(--white);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -559,37 +560,139 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
 
 .benchmark-title p {
   max-width: none;
-  margin: 10px 0 0;
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 14px;
-  line-height: 1.42;
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 12px;
+  line-height: 1.25;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-.benchmark-metric { min-width: 0; }
+.benchmark-metric {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(134px, 0.34fr);
+  grid-template-areas:
+    "graph label"
+    "graph lift"
+    "graph detail";
+  column-gap: 18px;
+  align-content: center;
+  align-items: center;
+}
+
+.benchmark-metric > span {
+  grid-area: label;
+}
 
 .benchmark-metric strong {
-  font-size: 20px;
+  grid-area: lift;
+  font-size: 18px;
   line-height: 1.12;
 }
 
 .benchmark-metric small {
-  margin-top: 10px;
+  grid-area: detail;
+  margin-top: 8px;
   color: rgba(255, 255, 255, 0.50);
-  line-height: 1.34;
+  font-size: 11px;
+  line-height: 1.18;
 }
 
-.benchmark-metric::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 9px;
-  margin-top: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+.benchmark-scoregraph {
+  grid-area: graph;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   background:
-    linear-gradient(90deg, transparent calc(var(--baseline, 0%) - 1px), rgba(255, 255, 255, 0.58) 0 calc(var(--baseline, 0%) + 1px), transparent 0),
-    linear-gradient(90deg, transparent calc(var(--omar, 0%) - 2px), rgba(255, 255, 255, 1) 0 calc(var(--omar, 0%) + 2px), transparent 0),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.26) 0 var(--omar, 0%), transparent 0),
-    rgba(255, 255, 255, 0.055);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.050) 1px, transparent 1px) 0 0 / 25% 100%,
+    linear-gradient(180deg, rgba(118, 171, 255, 0.14), rgba(255, 255, 255, 0.026));
+}
+
+.benchmark-board .benchmark-scale {
+  width: 100%;
+  justify-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.benchmark-scale i {
+  font-style: normal;
+}
+
+.benchmark-scale i:nth-child(2) { text-align: center; }
+.benchmark-scale i:nth-child(3) { text-align: right; }
+
+.benchmark-board .benchmark-track {
+  width: 100%;
+  justify-self: stretch;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.benchmark-track b {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.benchmark-track i {
+  position: relative;
+  display: block;
+  height: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.055);
+  font-style: normal;
+}
+
+.benchmark-track i::before,
+.benchmark-track i::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+}
+
+.benchmark-track i::before {
+  width: var(--baseline);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.benchmark-track-omar i {
+  height: 16px;
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(127, 183, 255, 0.10);
+}
+
+.benchmark-track-omar i::before {
+  width: var(--omar);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(127, 183, 255, 0.98));
+}
+
+.benchmark-track i::after {
+  left: calc(var(--baseline) - 1px);
+  width: 2px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.benchmark-track-omar i::after {
+  left: calc(var(--omar) - 2px);
+  width: 4px;
+  background: var(--white);
+  box-shadow: 0 0 16px rgba(127, 183, 255, 0.58);
 }
 
 .benchmark-play {
@@ -815,6 +918,22 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     min-height: 0;
     gap: 18px;
     padding: 22px 18px;
+  }
+  .benchmark-metric {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "graph"
+      "label"
+      "lift"
+      "detail";
+    gap: 10px;
+  }
+  .benchmark-scoregraph {
+    padding: 13px 12px 12px;
+  }
+  .benchmark-board .benchmark-track {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 8px;
   }
   .benchmark-title strong,
   .benchmark-metric strong {
