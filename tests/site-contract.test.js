@@ -149,12 +149,19 @@ test("Railway static server entrypoint preserves Range-capable asset delivery", 
   assertIncludes(server, "index.html", "server.js");
 });
 
-test("Validate before motion frame uses the non-human mechanical mask asset", () => {
-  const acceptedAsset = "./assets/generated/omar-protocol-validate-companion-open-rig-no-brow-v14-720x1280.png";
-  const rejectedAsset = "./assets/generated/omar-protocol-validate-companion-pelvis-no-brow-v13-720x1280.png";
+test("Validate before motion frame uses the new non-humanoid actuator gate asset", () => {
+  const acceptedAsset = "./assets/generated/omar-protocol-validate-motion-actuator-gate-v16-941x1672.png";
+  const rejectedAssets = [
+    "./assets/generated/omar-protocol-validate-companion-open-rig-no-brow-v14-720x1280.png",
+    "./assets/generated/omar-protocol-validate-companion-pelvis-no-brow-v13-720x1280.png",
+    "./assets/generated/omar-protocol-validate-before-motion-face-v3-720x1280.png",
+    "./assets/generated/omar-protocol-validate-feminine-bust-no-brow-v10-720x1280.png"
+  ];
 
   assertIncludes(html, acceptedAsset, "frame-04 source");
-  assert.equal(html.includes(rejectedAsset), false, "frame-04 must not reference the rejected humanoid-face asset");
+  for (const rejectedAsset of rejectedAssets) {
+    assert.equal(html.includes(rejectedAsset), false, `frame-04 must not reference rejected humanoid asset: ${rejectedAsset}`);
+  }
 });
 
 test("main hero uses the orbital satellite repair design family", () => {
