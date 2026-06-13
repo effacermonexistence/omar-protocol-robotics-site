@@ -17,7 +17,7 @@
         <a href="#details" data-detail-target="layer">Robotics</a>
         <a href="#details" data-detail-target="modules">Layer</a>
         <a href="#details" data-detail-target="sdk">SDK</a>
-        <a href="#details" data-detail-target="benchmarks">Benchmarks</a>
+        <a href="#benchmarks">Benchmarks</a>
       </nav>
       <a class="nav-cta" href="#details" data-detail-target="access">Request Access</a>
     </header>
@@ -25,26 +25,14 @@
     <main id="top" class="landing-film">
       <section class="film-section film-hero reveal frame-01" aria-labelledby="hero-title">
         <div class="frame-media" aria-hidden="true">
-          <video
-            data-hero-video
-            data-local-src="./assets/runway/omar-protocol-selected-pass1.mp4"
-            data-public-src="https://effacermonexistence.github.io/omar-protocol-robotics-site/assets/runway/omar-protocol-selected-pass1.mp4"
-            data-local-poster="./assets/runway/omar-protocol-selected-pass1-firstframe.png"
-            data-public-poster="https://effacermonexistence.github.io/omar-protocol-robotics-site/assets/runway/omar-protocol-selected-pass1-firstframe.png"
-            poster="./assets/runway/omar-protocol-selected-pass1-firstframe.png"
-            autoplay
-            muted
-            loop
-            playsinline
-            webkit-playsinline
-            preload="auto"
-            crossorigin="anonymous"
-            disablepictureinpicture
-            controlslist="nodownload noplaybackrate noremoteplayback"
-            x-webkit-airplay="deny"
-          >
-            <source src="./assets/runway/omar-protocol-selected-pass1.mp4" type="video/mp4" />
-          </video>
+          <img
+            src="./assets/runway/omar-protocol-satellite-repair-v2-firstframe.jpg"
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            data-motion-image
+          />
         </div>
         <div class="frame-shade shade-left" aria-hidden="true"></div>
         <div class="frame-copy align-left">
@@ -107,7 +95,7 @@
 
       <section class="film-section reveal frame-04">
         <div class="frame-media" aria-hidden="true">
-          <img src="./assets/generated/omar-protocol-validate-companion-pelvis-no-brow-v13-720x1280.png" alt="" loading="lazy" data-motion-image />
+          <img src="./assets/generated/omar-protocol-validate-companion-open-rig-no-brow-v14-720x1280.png" alt="" loading="lazy" data-motion-image />
         </div>
         <div class="frame-shade shade-left" aria-hidden="true"></div>
         <div class="frame-copy align-left narrow-copy">
@@ -190,6 +178,289 @@
       </section>
     </main>
 
+    <section class="benchmark-field" id="benchmarks" aria-labelledby="benchmark-title">
+      <div class="benchmark-field-head">
+        <div>
+          <p class="eyebrow">OmarAGI Evidence Board</p>
+          <h2 id="benchmark-title">Benchmark graph board.</h2>
+        </div>
+        <p class="benchmark-field-lead">
+          Live OmarAGI benchmark lanes, restyled for Omar Protocol. Each row keeps the same-sample boundary and routes Play into the BYOK replay harness.
+        </p>
+      </div>
+
+      <div class="benchmark-board" data-benchmark-board aria-label="OmarAGI benchmark replay board">
+            <div class="benchmark-board-head">
+              <div><span>Imported live board</span><strong>20 lanes</strong></div>
+              <div><span>Replay surface</span><strong>BYOK / run</strong></div>
+              <a class="button benchmark-board-action" href="https://omaragi.com/run">Open BYOK Replay</a>
+            </div>
+
+            <ol class="benchmark-list">
+              <li class="benchmark-row" data-benchmark-name="HLE / HLE-Verified" style="--baseline: 6%; --omar: 12%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>HLE / HLE-Verified</strong>
+                  <p>Hard-exam lane for expert knowledge plus exact-answer and multiple-choice routing.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+100.00% / +6.00 pts</strong>
+                  <small>0.0600 baseline to 0.1200 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HLE / HLE-Verified on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="BBEH" style="--baseline: 9%; --omar: 19%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>BBEH</strong>
+                  <p>Hard reasoning stress row for constraints, shortcut resistance, and anti-family traps.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+111.11% / +10.00 pts</strong>
+                  <small>0.0900 baseline to 0.1900 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play BBEH on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="SimpleQA Verified / VSF" style="--baseline: 18.8%; --omar: 35.58%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>SimpleQA Verified / VSF</strong>
+                  <p>Short factual QA with concise verified answers and F1-style factual reliability.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+89.24% / +16.78 pts</strong>
+                  <small>0.1880 baseline F1 to 0.3558 Omar/RCC F1</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play SimpleQA Verified / VSF on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="BBH" style="--baseline: 67%; --omar: 77%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>BBH</strong>
+                  <p>Big-Bench Hard symbolic, logical, linguistic, and multi-step reasoning lane.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+14.93% / +10.00 pts</strong>
+                  <small>0.6700 baseline to 0.7700 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play BBH on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="MuSR" style="--baseline: 72%; --omar: 75%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>MuSR</strong>
+                  <p>Multi-step reasoning holdout for narrative and logical state preservation.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+4.17% / +3.00 pts</strong>
+                  <small>0.7200 baseline to 0.7500 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play MuSR on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="BIPIA" style="--baseline: 82%; --omar: 99%;">
+                <div class="benchmark-title">
+                  <span>Control-layer smoke</span>
+                  <strong>BIPIA</strong>
+                  <p>Prompt-injection resistance check for untrusted external content and conflicting instructions.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+20.73% / +17.0 pts</strong>
+                  <small>82.0% baseline safe to 99.0% Omar hint v3 safe</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play BIPIA on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="HaluEval" style="--baseline: 81%; --omar: 100%;">
+                <div class="benchmark-title">
+                  <span>Control-layer smoke</span>
+                  <strong>HaluEval</strong>
+                  <p>Hallucination and factuality check for false or unsupported content pressure.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+23.46% / +19.0 pts</strong>
+                  <small>81.0% baseline to 100.0% Omar hint v8</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HaluEval on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="TruthfulQA" style="--baseline: 85%; --omar: 100%;">
+                <div class="benchmark-title">
+                  <span>Control-layer smoke</span>
+                  <strong>TruthfulQA</strong>
+                  <p>Truthfulness benchmark for popular misconceptions and false-premise traps.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+17.65% / +15.0 pts</strong>
+                  <small>85.0% baseline to 100.0% Omar hint v8</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play TruthfulQA on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="AgentDojo" style="--baseline: 96%; --omar: 100%;">
+                <div class="benchmark-title">
+                  <span>Control-layer smoke</span>
+                  <strong>AgentDojo</strong>
+                  <p>Agent/tool-use safety row for real-user objectives under malicious tool content.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+4.17% / +4.0 pts</strong>
+                  <small>96.0% baseline safe to 100.0% Omar hint v2 safe</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play AgentDojo on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="HorizonMath" style="--baseline: 22%; --omar: 32%;">
+                <div class="benchmark-title">
+                  <span>High-value exception</span>
+                  <strong>HorizonMath</strong>
+                  <p>Numeric and constants-oriented research math lane with auto-checkable answers.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+45.5% / +10.0 pts</strong>
+                  <small>22.0% baseline to 32.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HorizonMath on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="AIME 120" style="--baseline: 50.83%; --omar: 60%;">
+                <div class="benchmark-title">
+                  <span>Internal review</span>
+                  <strong>AIME 120</strong>
+                  <p>Olympiad-style math with exact final answers and review-bound exactness status.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+18.03% / +9.17 pts</strong>
+                  <small>0.5083 baseline to 0.6000 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play AIME 120 on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="GPQA" style="--baseline: 75%; --omar: 78%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>GPQA</strong>
+                  <p>Graduate-level science QA for specialist knowledge and careful choice selection.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+4.00% / +3.00 pts</strong>
+                  <small>0.7500 baseline to 0.7800 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play GPQA on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="MMLU-Pro" style="--baseline: 74%; --omar: 78%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>MMLU-Pro</strong>
+                  <p>Professional breadth benchmark for broad knowledge and distractor handling.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+5.41% / +4.0 pts</strong>
+                  <small>74.0% baseline to 78.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play MMLU-Pro on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="SimpleQA" style="--baseline: 22%; --omar: 24%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>SimpleQA</strong>
+                  <p>Simple factual question-answering for short answers, abstention, and unsupported filler.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+9.09% / +2.0 pts</strong>
+                  <small>22.0% baseline to 24.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play SimpleQA on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="Facts Grounding" style="--baseline: 97%; --omar: 99%;">
+                <div class="benchmark-title">
+                  <span>Board-depth replay</span>
+                  <strong>Facts Grounding</strong>
+                  <p>Grounded factuality lane for staying inside supplied evidence without invented claims.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+2.1% / +2.0 pts</strong>
+                  <small>97.0% baseline to 99.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play Facts Grounding on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="HealthBench hard" style="--baseline: 50.7%; --omar: 56.8%;">
+                <div class="benchmark-title">
+                  <span>Board context</span>
+                  <strong>HealthBench hard</strong>
+                  <p>Difficult medical reliability slice for clinical constraints and safety-sensitive reasoning.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+11.9% / +6.0 pts</strong>
+                  <small>50.7% baseline to 56.8% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HealthBench hard on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="HealthBench main" style="--baseline: 69%; --omar: 77%;">
+                <div class="benchmark-title">
+                  <span>Board context</span>
+                  <strong>HealthBench main</strong>
+                  <p>Main medical response reliability lane for evidence-following and objective preservation.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+13.16% / +8.0 pts</strong>
+                  <small>69.0% baseline to 77.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HealthBench main on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="HealthBench consensus" style="--baseline: 88.9%; --omar: 91.7%;">
+                <div class="benchmark-title">
+                  <span>Board context</span>
+                  <strong>HealthBench consensus</strong>
+                  <p>Medical consensus-stability lane, separate from hard and main HealthBench rows.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+3.1% / +2.8 pts</strong>
+                  <small>88.9% baseline to 91.7% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play HealthBench consensus on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="RoboBench Embodied QA" style="--baseline: 15%; --omar: 29%;">
+                <div class="benchmark-title">
+                  <span>Robotics smoke</span>
+                  <strong>RoboBench Embodied QA</strong>
+                  <p>Frozen embodied QA smoke for DSL grammar, next-step boundaries, and conservative progress checks.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+93.33% / +14.0 pts</strong>
+                  <small>15.0% baseline to 29.0% Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play RoboBench Embodied QA on OmarAGI BYOK">Play</a>
+              </li>
+              <li class="benchmark-row" data-benchmark-name="ManiSkill Robotics" style="--baseline: 85.46%; --omar: 96.89%;">
+                <div class="benchmark-title">
+                  <span>Robotics smoke</span>
+                  <strong>ManiSkill Robotics</strong>
+                  <p>Local robotics policy smoke over 100 asset-light cases, not an official ManiSkill leaderboard claim.</p>
+                </div>
+                <div class="benchmark-metric">
+                  <span>Lift</span>
+                  <strong>+13.38% / +11.4313 reward</strong>
+                  <small>85.4592 baseline reward to 96.8905 Omar/RCC</small>
+                </div>
+                <a class="benchmark-play" href="https://omaragi.com/run" aria-label="Play ManiSkill Robotics on OmarAGI BYOK">Play</a>
+              </li>
+            </ol>
+          </div>
+    </section>
+
     <aside class="detail-drawer" id="details" aria-hidden="true" aria-label="Omar Protocol robotics details">
       <div class="drawer-backdrop" data-close-details></div>
       <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
@@ -262,14 +533,19 @@
 
         <section class="tab-panel" data-tab-panel="benchmarks">
           <p class="eyebrow">Benchmarks</p>
-          <h3>Benchmarks and replay traces.</h3>
-          <p>Omar Protocol exposes benchmark surfaces and replayable traces so robot-agent behavior can be reviewed, compared, and improved.</p>
-          <p>Benchmarks and replay traces are available across Omar AGI surfaces.</p>
-          <div class="report-panel" aria-label="Benchmark replay report preview">
-            <div><span>Route quality</span><strong>0.91</strong></div>
-            <div><span>Gate confidence</span><strong>0.87</strong></div>
-            <div><span>Boundary status</span><strong>Blocked</strong></div>
-            <small>command.validated / candidate.score.rank_01 / permission.gate.denied</small>
+          <h3>OmarAGI benchmark board, protocol skin.</h3>
+          <p>
+            The public OmarAGI benchmark lanes are mirrored here as a protocol board. Read every
+            score with its same-sample package, raw outputs, route logs, scorer context, and manifest.
+          </p>
+          <p>
+            Press Play to reproduce from the OmarAGI BYOK replay surface. The board is evidence
+            routing, not a universal deployment guarantee.
+          </p>
+
+          <div class="benchmark-jump-panel" aria-label="Benchmark board route">
+            <a class="button" href="#benchmarks" data-close-details>Open Benchmark Board</a>
+            <a class="button" href="https://omaragi.com/run">Open BYOK Replay</a>
           </div>
         </section>
 

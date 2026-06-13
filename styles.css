@@ -421,6 +421,214 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
 .report-panel strong { display: block; margin-top: 20px; font-size: clamp(28px, 3vw, 44px); line-height: 1; }
 .report-panel small { grid-column: 1 / -1; border-top: 1px solid var(--line); padding: 18px 22px; color: rgba(255, 255, 255, 0.62); line-height: 1.35; }
 
+.benchmark-field {
+  position: relative;
+  z-index: 8;
+  isolation: isolate;
+  scroll-margin-top: 72px;
+  border-top: 1px solid var(--line);
+  padding: clamp(96px, 13vw, 168px) var(--pad) clamp(84px, 10vw, 136px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 16%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 24%, transparent 74%, rgba(255, 255, 255, 0.025)),
+    var(--black);
+}
+
+.benchmark-field-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding-bottom: clamp(36px, 5vw, 62px);
+}
+
+.benchmark-field h2 {
+  max-width: 920px;
+  font-size: clamp(46px, 7.4vw, 118px);
+}
+
+.benchmark-field-lead {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: 800;
+  line-height: 1.22;
+  text-transform: uppercase;
+}
+
+.benchmark-board {
+  max-width: 1480px;
+  margin: 34px auto 0;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.34);
+}
+
+.benchmark-field .benchmark-board { margin-top: 0; }
+
+.benchmark-board-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+
+.benchmark-board-head > div {
+  display: grid;
+  align-content: end;
+  min-height: 112px;
+  border-right: 1px solid var(--line);
+  padding: 22px;
+}
+
+.benchmark-board span,
+.benchmark-board small {
+  display: block;
+  color: var(--soft);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.24;
+  text-transform: uppercase;
+}
+
+.benchmark-board-head strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--white);
+  font-size: 22px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.benchmark-board-action {
+  align-self: center;
+  margin: 0 22px;
+  white-space: nowrap;
+}
+
+.benchmark-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: benchmark-row;
+}
+
+.benchmark-row {
+  counter-increment: benchmark-row;
+  display: grid;
+  grid-template-columns: minmax(240px, 1.34fr) minmax(196px, 0.70fr) 92px;
+  gap: 22px;
+  align-items: center;
+  min-height: 128px;
+  border-bottom: 1px solid var(--line);
+  padding: 24px 22px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0));
+  transition: background 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.benchmark-row:last-child { border-bottom: 0; }
+.benchmark-row:hover { background: rgba(255, 255, 255, 0.055); border-bottom-color: rgba(255, 255, 255, 0.28); }
+
+.benchmark-title {
+  min-width: 0;
+  display: grid;
+}
+
+.benchmark-title::before {
+  content: counter(benchmark-row, decimal-leading-zero);
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.benchmark-title strong,
+.benchmark-metric strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--white);
+  font-size: 22px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.benchmark-title span { margin-top: 10px; }
+
+.benchmark-title p {
+  max-width: none;
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+.benchmark-metric { min-width: 0; }
+
+.benchmark-metric strong {
+  font-size: 20px;
+  line-height: 1.12;
+}
+
+.benchmark-metric small {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.50);
+  line-height: 1.34;
+}
+
+.benchmark-metric::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 9px;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background:
+    linear-gradient(90deg, transparent calc(var(--baseline, 0%) - 1px), rgba(255, 255, 255, 0.58) 0 calc(var(--baseline, 0%) + 1px), transparent 0),
+    linear-gradient(90deg, transparent calc(var(--omar, 0%) - 2px), rgba(255, 255, 255, 1) 0 calc(var(--omar, 0%) + 2px), transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.26) 0 var(--omar, 0%), transparent 0),
+    rgba(255, 255, 255, 0.055);
+}
+
+.benchmark-play {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  overflow: hidden;
+  border: 1px solid var(--white);
+  padding: 0 14px;
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.benchmark-play::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 0;
+  background: var(--white);
+  transition: height 220ms var(--ease);
+}
+
+.benchmark-play:hover { color: var(--black); }
+.benchmark-play:hover::before { height: 100%; }
+
+.benchmark-jump-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
 .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 22px var(--pad); background: var(--black); color: rgba(255, 255, 255, 0.48); font-size: 11px; font-weight: 800; text-transform: uppercase; }
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity 820ms var(--ease), transform 820ms var(--ease); }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -447,6 +655,7 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
   .frame-copy { width: min(760px, calc(100vw - 44px)); padding: 100px 22px 82px; }
   .align-right { justify-self: start; }
   .drawer-panel { width: min(100vw, 760px); }
+  .benchmark-field-head { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -570,12 +779,54 @@ code { color: rgba(255, 255, 255, 0.86); font-family: Consolas, "Courier New", m
     gap: 10px;
     font-size: 10px;
   }
+  .benchmark-field {
+    scroll-margin-top: 56px;
+    padding: 82px 18px 72px;
+  }
+  .benchmark-field h2 {
+    font-size: clamp(38px, 13vw, 58px);
+  }
+  .benchmark-field-lead {
+    font-size: 14px;
+    line-height: 1.3;
+  }
   .drawer-panel { width: 100vw; padding: 22px 18px 44px; }
   .drawer-header { align-items: flex-start; }
   .detail-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .detail-tabs button, .detail-tabs button:last-child { border: 1px solid var(--line); }
   .process, .module-grid, .report-panel { grid-template-columns: 1fr; }
   .report-panel div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .benchmark-board-head,
+  .benchmark-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .benchmark-board-head > div {
+    min-height: 96px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 18px;
+  }
+  .benchmark-board-action {
+    width: calc(100% - 36px);
+    min-width: 0;
+    margin: 18px;
+  }
+  .benchmark-row {
+    min-height: 0;
+    gap: 18px;
+    padding: 22px 18px;
+  }
+  .benchmark-title strong,
+  .benchmark-metric strong {
+    font-size: 19px;
+  }
+  .benchmark-play {
+    width: 100%;
+    min-height: 46px;
+  }
+  .benchmark-jump-panel .button {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

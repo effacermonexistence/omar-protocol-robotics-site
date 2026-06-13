@@ -1,0 +1,35 @@
+{
+  "lockName": "Omar Protocol Robotics Site Acceptance Lock",
+  "acceptedAt": "2026-06-13",
+  "scope": "Current desktop and mobile static site state accepted by Ben. Any source or locked hero asset drift must be deliberate and update this manifest in the same change.",
+  "viewports": {
+    "desktop": { "width": 1440, "height": 900 },
+    "mobile": { "width": 430, "height": 932, "deviceScaleFactor": 3, "isMobile": true, "hasTouch": true }
+  },
+  "lockedFiles": {
+    "index.html": "6a4a552c8359300d5ae48d4c9db31d920cef4899c4d8867d5b39f190748fa425",
+    "styles.css": "a4a7360fe30d5da4f3e5b32cc8ac6503a80306f21a2656cad0893ad7cd38ddb2",
+    "script.js": "36041c44d42e39b93397dab69edd4d27d54b9733fcc362c1ddd6f097c9da2083"
+  },
+  "lockedHeroAssets": {
+    "assets/runway/omar-protocol-frame03-outlive-v3-cable-lock-gen45-firstframe.jpg": "fc05ebfa4a156014b4ea965d05174bd11912c2028f2cabed9aa46c4c48b49756",
+    "assets/runway/omar-protocol-frame03-outlive-v3-cable-lock-gen45-10s-mobile-safari.mp4": "93c15026262226433198583186cb71f1171c857eda65a6830a11ff800627dd47",
+    "assets/runway/omar-protocol-satellite-repair-v2-firstframe.jpg": "abbb4aa16423679eb3b004727f3d24b5b7df941618309bac6e43f5e45dfdd0da",
+    "assets/runway/omar-protocol-satellite-repair-v2-10s-mobile-safari.mp4": "f1810dee8c2de5270625f45c96b2ab19ad9bb886b99c1ad15bf1e9c37277b6b3",
+    "assets/runway/omar-protocol-frame06-runway-v8-gen45-firstframe.jpg": "e2fd37bbf1cdf58582b85d0852300ac698ed73af28c3f87a4201474e719b6367",
+    "assets/runway/omar-protocol-frame06-runway-v8-gen45-10s-mobile-safari.mp4": "d3d9e4c7a24f7af122f7ee6e09be31dc6899f0b6842d0b8835901bb0970456ec",
+    "assets/generated/omar-protocol-validate-companion-open-rig-no-brow-v14-720x1280.png": "65e9d1beb7034db659fd03caa534ece789ab393c7858efa896fb75a0d1fe204d"
+  },
+  "lockedCopy": [
+    "Omar Protocol",
+    "Reliability before action.",
+    "Reliability lives in the joint.",
+    "Install what must outlive us.",
+    "Validate before motion.",
+    "Reliability above the atmosphere.",
+    "Repair what civilization depends on.",
+    "Robotics reliability before action."
+  ],
+  "lockedTabs": ["layer", "modules", "sdk", "benchmarks", "access"],
+  "lockedFrames": ["frame-01", "frame-02", "frame-03", "frame-04", "frame-05", "frame-06"]
+}
