@@ -7,7 +7,7 @@
     "mobile": { "width": 430, "height": 932, "deviceScaleFactor": 3, "isMobile": true, "hasTouch": true }
   },
   "lockedFiles": {
-    "index.html": "dc16467b5370c8eab9e5406dd8902c2b887e2129909fb20ff1f32f186f871cec",
+    "index.html": "372c31e817a86cd4edeac4311356239ccf90f9fd0488ed9337a24393edcca244",
     "styles.css": "26728cff300e1035e9f41ee48a5cf68cdec2cbfabd159c660efbcefb6a52b79e",
     "script.js": "36041c44d42e39b93397dab69edd4d27d54b9733fcc362c1ddd6f097c9da2083"
   },
